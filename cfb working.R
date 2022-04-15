@@ -53,11 +53,24 @@ test <- ggplot(data = grouped_means ,  aes(text = offense_play,  x=pass , y = ru
   ylab ("Rush Average Per Play")+
   xlab("Pass Average Per Play")+
   ggtitle("2021 Average Yards Per Play by Play Type"  ) +
-  scale_color_discrete(name = "Conference") +
-  theme (plot.title = element_text(hjust = 0.5) , axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  scale_color_discrete(name = "Conference" ) +
+  theme (plot.title = element_text(hjust = 0.5, size = 18 , face = "bold") , 
+         axis.text=element_text(size=12), axis.title=element_text(size=14) , 
+         panel.border = element_blank(),
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(),
+         panel.background = element_rect(fill = "white",
+                                         colour = "black",
+                                         size = 0.5, linetype = "solid"),
+         axis.line = element_line(size = 0.5, linetype = "solid",
+                                  colour = "black"),
+         legend.key.size = unit(1, 'cm'), #change legend key size
+         legend.key.height = unit(1, 'cm'), #change legend key height
+         legend.key.width = unit(1, 'cm'), #change legend key width
+         legend.title = element_text(size=14), #change legend title font size
+         legend.text = element_text(size=10))
 
-ggplotly(test , tooltip = c("text" , "x" , "y"))
+final <- ggplotly(test , tooltip = c("text" , "x" , "y"))
 
-
-
+glimpse(pbp)
 
